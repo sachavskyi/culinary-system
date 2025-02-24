@@ -1,5 +1,5 @@
 from django.contrib.auth.models import AbstractUser
-from django.core.validators import MaxValueValidator
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 
 
@@ -17,3 +17,22 @@ class Cook(AbstractUser):
 
     def __str__(self) -> str:
         return self.username
+
+
+class Dish(models.Model):
+    name = models.CharField(max_length=255, unique=True)
+    description = models.TextField()
+    price = models.DecimalField(
+        max_digits=6,
+        decimal_places=2,
+        validators=[MinValueValidator(1)]
+    )
+    dish_type = models.ForeignKey(
+        DishType,
+        related_name="dishes",
+        on_delete=models.CASCADE
+    )
+    cooks = models.ManyToManyField(Cook, related_name="dishes")
+
+    def __str__(self) -> str:
+        return self.name
