@@ -1,0 +1,23 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    background-color: black;
+}
+
+
+
+.content {
+    background-color: darkmagenta;
+    font-size: 2rem;
+    width: 80vw;
+    padding-left: 20px;
+}
+
+.sidebar {
+    background-color: darkviolet;
+    font-size: 2rem;
+    width: 17.3vw;
+    padding-right: 20px;
+    padding-top: 30px;
+}
