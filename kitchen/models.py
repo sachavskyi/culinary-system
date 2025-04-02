@@ -1,4 +1,4 @@
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, Group, Permission
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 
@@ -14,6 +14,8 @@ class Cook(AbstractUser):
     years_of_experience = models.PositiveSmallIntegerField(
         validators=[MaxValueValidator(100)]
     )
+    groups = models.ManyToManyField(Group, related_name="cook_set", blank=True)
+    user_permissions = models.ManyToManyField(Permission, related_name="cook_set", blank=True)
 
     def __str__(self) -> str:
         return self.username
