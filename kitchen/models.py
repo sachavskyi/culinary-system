@@ -23,7 +23,7 @@ class Cook(AbstractUser):
 
 class Dish(models.Model):
     name = models.CharField(max_length=255, unique=True)
-    description = models.TextField()
+    description = models.TextField(blank=True)
     price = models.DecimalField(
         max_digits=6,
         decimal_places=2,
