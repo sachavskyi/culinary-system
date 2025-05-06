@@ -11,3 +11,8 @@ def index(request):
 class DishListView(generic.ListView):
     model = Dish
     template_name = "kitchen/dish_list.html"
+
+
+class DishDetailView(generic.DetailView):
+    model = Dish
+    template_name = "kitchen/dish_detail.html"
