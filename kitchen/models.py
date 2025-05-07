@@ -12,10 +12,9 @@ class DishType(models.Model):
 
 class Cook(AbstractUser):
     years_of_experience = models.PositiveSmallIntegerField(
-        validators=[MaxValueValidator(100)]
+        validators=[MaxValueValidator(100)],
+        default=0,
     )
-    groups = models.ManyToManyField(Group, related_name="cook_set", blank=True)
-    user_permissions = models.ManyToManyField(Permission, related_name="cook_set", blank=True)
 
     def __str__(self) -> str:
         return self.username
