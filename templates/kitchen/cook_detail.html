@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>username: {{ cook.username }}</h1>
+  <h1>first name: {{ cook.first_name }}, last name: {{ cook.last_name }}</h1>
+
+  {% if cook.dishes %}
+    <h1>Cook's dishes:</h1>
+    <ul>
+      {% for dish in cook.dishes.all %}
+        <li>
+          <a href="{% url "kitchen:dish-detail"  dish.pk %}">{{ dish.name }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    This cook has no dishes.
+  {% endif %}
+{% endblock %}

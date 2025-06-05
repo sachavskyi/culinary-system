@@ -6,7 +6,7 @@
     <ul>
       {% for cook in cook_list %}
         <li>
-          {{ cook.username }}
+          <a href="{% url "kitchen:cook-detail" cook.pk %}">{{ cook.username }}</a>
         </li>
       {% endfor %}
     </ul>

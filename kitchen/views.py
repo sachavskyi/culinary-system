@@ -27,3 +27,8 @@ class DishTypeListView(generic.ListView):
 class CookListView(generic.ListView):
     model = Cook
     template_name = "kitchen/cook_list.html"
+
+
+class CookDetailView(generic.DetailView):
+    model = Cook
+    template_name = "kitchen/cook_detail.html"
