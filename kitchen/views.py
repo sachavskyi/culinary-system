@@ -5,7 +5,12 @@ from kitchen.models import Dish, DishType, Cook
 
 
 def index(request):
-    return render(request, "kitchen/index.html")
+    context = {
+        "num_dishes": Dish.objects.count(),
+        "num_dish_types": DishType.objects.count(),
+        "num_cooks": Cook.objects.count(),
+    }
+    return render(request, "kitchen/index.html", context)
 
 
 class DishListView(generic.ListView):
