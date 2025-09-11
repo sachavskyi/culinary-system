@@ -25,6 +25,7 @@ class DishDetailView(generic.DetailView):
 
 class DishTypeListView(generic.ListView):
     model = DishType
+    queryset = DishType.objects.order_by("name")
     template_name = "kitchen/dish_type_list.html"
     context_object_name = "dish_type_list"
 
