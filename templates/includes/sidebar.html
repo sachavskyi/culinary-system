@@ -1,8 +1,16 @@
 {% block sidebar %}
 <ul>
-  <li><a href={% url "kitchen:index" %}>Home</a></li>
-  <li><a href={% url "kitchen:dish-type-list" %}>Dish types</a></li>
-  <li><a href={% url "kitchen:dish-list" %}>Dishes</a></li>
-  <li><a href={% url "kitchen:cook-list" %}>Cooks</a></li>
+  <li class="sidebar-list">
+    <a class="sidebar-link" href={% url "kitchen:index" %}>Home</a>
+  </li>
+  <li class="sidebar-list">
+    <a class="sidebar-link" href={% url "kitchen:dish-type-list" %}>Dish types</a>
+  </li>
+  <li class="sidebar-list">
+    <a class="sidebar-link" href={% url "kitchen:dish-list" %}>Dishes</a>
+  </li>
+  <li class="sidebar-list">
+    <a class="sidebar-link" href={% url "kitchen:cook-list" %}>Cooks</a>
+  </li>
 </ul>
 {% endblock %}

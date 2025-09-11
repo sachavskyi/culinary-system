@@ -1,21 +1,30 @@
-html, body {
+body {
     min-height: 100vh;
     margin: 0;
     display: flex;
-    background-color: black;
 }
 
 .content {
-    background-color: darkmagenta;
-    font-size: 2rem;
-    width: 80vw;
+    background-color: #E1AFD1;
+    color: #071b3b;
+    width: 100%;
     padding-left: 20px;
+    font-size: 2rem;
 }
 
 .sidebar {
-    background-color: darkviolet;
-    font-size: 2rem;
-    width: 17.3vw;
-    padding-right: 20px;
+    background-color: #AD88C6;
+    padding-right: 80px;
     padding-top: 30px;
+}
+
+.sidebar-link{
+    color: #071b3b;
+    font-size: 2.5rem;
+    text-decoration: none;
+}
+
+.sidebar-list{
+    padding-bottom: 30px;
+    list-style: none;
 }
