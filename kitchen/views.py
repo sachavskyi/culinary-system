@@ -38,3 +38,4 @@ class CookListView(generic.ListView):
 class CookDetailView(generic.DetailView):
     model = Cook
     template_name = "kitchen/cook_detail.html"
+    queryset = Cook.objects.prefetch_related("dishes")
