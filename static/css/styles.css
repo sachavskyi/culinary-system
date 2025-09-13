@@ -28,3 +28,18 @@ body {
     padding-bottom: 30px;
     list-style: none;
 }
+
+.link {
+    text-decoration: none;
+    color: #071b3b;
+}
+
+.page-pag {
+    background-color: #E1AFD1;
+    margin-left: 1%;
+    border: 2px solid black;
+    padding: 6px;
+    color: white;
+    text-decoration: none;
+    border-radius: 7px;
+}

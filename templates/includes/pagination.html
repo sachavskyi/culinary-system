@@ -1,0 +1,54 @@
+{% if is_paginated %}
+  <div class="paginator">
+    {% if page_obj.has_previous %}
+      <span class="page-pag">
+        <a class="link" href="?page={{ page_obj.previous_page_number }}">&lt</a>
+      </span>
+    {% endif %}
+
+    {% if page_obj.number >= 5 %}
+      <span class="page-pag">
+        <a class="link" href="?page=1">1</a>
+      </span>
+    {% endif %}
+
+    {% if page_obj.number >= 6 %}
+      <span class="page-pag">
+        <a class="link" href="">...</a>
+      </span>
+    {% endif %}
+
+    {% for page in paginator.page_range %}
+      {% if page_obj.number <= page|add:3 and page <= page_obj.number|add:3 %}
+        {% if page != page_obj.number and page != paginator.num_pages %}
+          <span class="page-pag">
+            <a class="link" href="?page={{ page }}">{{ page }}</a>
+          </span>
+        {% elif page == page_obj.number %}
+          <span class="page-pag">
+            <a style="color: #c62ff6">{{ page_obj.number }}</a>
+          </span>
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+
+    {% if page_obj.number != paginator.num_pages %}
+      {% if paginator.num_pages >= page_obj.number|add:5 %}
+        <span class="page-pag">
+          <a class="link" href="">...</a>
+        </span>
+      {% endif %}
+      <span class="page-pag">
+        <a class="link" href="?page={{ paginator.num_pages }}">
+          {{ paginator.num_pages }}
+        </a>
+      </span>
+    {% endif %}
+
+    {% if page_obj.has_next %}
+      <span class="page-pag">
+        <a class="link" href="?page={{ page_obj.next_page_number }}">&gt</a>
+      </span>
+    {% endif %}
+  </div>
+{% endif %}
