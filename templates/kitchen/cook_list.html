@@ -7,6 +7,9 @@
       {% for cook in cook_list %}
         <li>
           <a href="{% url "kitchen:cook-detail" cook.pk %}">{{ cook.username }}</a>
+        {% if request.user.username == cook.username %}
+          (Me)
+        {% endif %}
         </li>
       {% endfor %}
     </ul>
