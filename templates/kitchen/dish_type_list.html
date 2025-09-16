@@ -2,10 +2,24 @@
 
 {% block content %}
   <h1>Dish types:</h1>
+  <a href={% url "kitchen:dish-type-create" %}>Create dish type</a>
   {% if dish_type_list %}
-    {% for dish_type in dish_type_list %}
-      <li>{{ dish_type.name }}</li>
-    {% endfor %}
+    <table>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Update</th>
+        <th>Delete</th>
+      </tr>
+      {% for dish_type in dish_type_list %}
+        <tr>
+          <td>{{ dish_type.id }}</td>
+          <td>{{ dish_type.name }}</td>
+          <td><a href={% url "kitchen:dish-type-update" dish_type.id %}>Update</a></td>
+          <td><a href={% url "kitchen:dish-type-delete" dish_type.id %}>Delete</a></td>
+        </tr>
+      {% endfor %}
+    </table>
   {% else %}
     <h1>No dish types</h1>
   {% endif %}
