@@ -16,4 +16,6 @@
   {% else %}
     This cook has no dishes.
   {% endif %}
+  <a href={% url "kitchen:cook-update" cook.id %}>Update</a>
+  <a href={% url "kitchen:cook-delete" cook.id %}>Delete</a>
 {% endblock %}

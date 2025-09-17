@@ -12,10 +12,10 @@
   {% if dish.cooks %}
     {% for cook in dish.cooks.all %}
       <p>username: {{ cook.username }}, first name: {{ cook.first_name }}, last name: {{ cook.last_name }}</p>
-      <a href={% url "kitchen:dish-update" dish.id %}>Update</a>
-      <a href={% url "kitchen:dish-delete" dish.id %}>Delete</a>
     {% endfor %}
   {% else %}
     <p>No cooks</p>
   {% endif %}
+  <a href={% url "kitchen:dish-update" dish.id %}>Update</a>
+  <a href={% url "kitchen:dish-delete" dish.id %}>Delete</a>
 {% endblock %}

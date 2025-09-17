@@ -2,6 +2,7 @@
 
 {% block content %}
 	<h1> Cook list</h1>
+  <a href={% url "kitchen:cook-create" %}>Create cook</a>
   {% if cook_list %}
     <ul>
       {% for cook in cook_list %}
