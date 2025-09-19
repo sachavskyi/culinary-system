@@ -1,7 +1,8 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render
-from django.urls import reverse_lazy
+from django.http import HttpResponse
+from django.shortcuts import render, redirect
+from django.urls import reverse_lazy, reverse
 from django.views import generic
 
 from kitchen.forms import CookCreationForm, CookUpdateForm, DishForm
@@ -27,6 +28,14 @@ class DishListView(LoginRequiredMixin, generic.ListView):
 class DishDetailView(LoginRequiredMixin, generic.DetailView):
     model = Dish
     template_name = "kitchen/dish_detail.html"
+
+    def post(self, request, *args, **kwargs):
+        dish = self.get_object()
+        if request.POST.get("action") == "delete":
+            dish.cooks.remove(request.user)
+        else:
+            dish.cooks.add(request.user)
+        return redirect("kitchen:dish-detail", pk=dish.pk)
 
 
 class DishCreateView(LoginRequiredMixin, generic.CreateView):

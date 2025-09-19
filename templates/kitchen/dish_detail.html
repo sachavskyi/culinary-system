@@ -16,6 +16,16 @@
   {% else %}
     <p>No cooks</p>
   {% endif %}
+  <form method="post">
+    {% csrf_token %}
+    {% if user in dish.cooks.all %}
+      Delete from my dishes
+      <input type="submit" name="action" value="delete">
+    {% else %}
+      Add to my dishes
+      <input type="submit" name="action" value="add">
+    {% endif %}
+  </form>
   <a href={% url "kitchen:dish-update" dish.id %}>Update</a>
   <a href={% url "kitchen:dish-delete" dish.id %}>Delete</a>
 {% endblock %}
