@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'debug_toolbar',
+    'crispy_forms',
+    'crispy_bootstrap5',
     'kitchen',
 ]
 
@@ -133,6 +135,8 @@ STATICFILES_DIRS = [
 AUTH_USER_MODEL = "kitchen.Cook"
 
 LOGIN_REDIRECT_URL = "/"
+
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 INTERNAL_IPS = [
     "127.0.0.1",
