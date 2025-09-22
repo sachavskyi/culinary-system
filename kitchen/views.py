@@ -1,8 +1,8 @@
+from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from django.urls import reverse_lazy, reverse
+from django.urls import reverse_lazy
 from django.views import generic
 
 from kitchen.forms import CookCreationForm, CookUpdateForm, DishForm
@@ -21,8 +21,15 @@ def index(request):
 
 class DishListView(LoginRequiredMixin, generic.ListView):
     model = Dish
+    queryset = Dish.objects.all()
     template_name = "kitchen/dish_list.html"
     paginate_by = 5
+
+    def get_queryset(self):
+        search = self.request.GET.get("search")
+        if search:
+            return self.queryset.filter(name__icontains=search)
+        return self.queryset
 
 
 class DishDetailView(LoginRequiredMixin, generic.DetailView):
@@ -65,6 +72,12 @@ class DishTypeListView(LoginRequiredMixin, generic.ListView):
     template_name = "kitchen/dish_type_list.html"
     context_object_name = "dish_type_list"
 
+    def get_queryset(self):
+        search = self.request.GET.get("search")
+        if search:
+            return self.queryset.filter(name__icontains=search)
+        return self.queryset
+
 
 class DishTypeCreateView(LoginRequiredMixin, generic.CreateView):
     model = DishType
@@ -89,8 +102,15 @@ class DishTypeDeleteView(LoginRequiredMixin, generic.DeleteView):
 
 class CookListView(LoginRequiredMixin, generic.ListView):
     model = Cook
+    queryset = get_user_model().objects.all()
     template_name = "kitchen/cook_list.html"
     paginate_by = 5
+
+    def get_queryset(self):
+        search = self.request.GET.get("search")
+        if search:
+            return self.queryset.filter(username__icontains=search)
+        return self.queryset
 
 
 class CookDetailView(LoginRequiredMixin, generic.DetailView):

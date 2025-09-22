@@ -2,6 +2,12 @@
 
 {% block content %}
   <h1>Dish types:</h1>
+  <form method="get">
+    <label>
+      <input type="text" name="search" placeholder="Search by name" value={{ request.GET.search }}>
+    </label>
+    <input type="submit">
+  </form>
   <a href={% url "kitchen:dish-type-create" %}>Create dish type</a>
   {% if dish_type_list %}
     <table>
