@@ -1,14 +1,15 @@
+{% load query_transform %}
 {% if is_paginated %}
   <div class="paginator">
     {% if page_obj.has_previous %}
       <span class="page-pag">
-        <a class="link" href="?page={{ page_obj.previous_page_number }}">&lt</a>
+        <a class="link" href="?{% query_transform request page=page_obj.previous_page_number %}">&lt</a>
       </span>
     {% endif %}
 
     {% if page_obj.number >= 5 %}
       <span class="page-pag">
-        <a class="link" href="?page=1">1</a>
+        <a class="link" href="?{% query_transform request page=1 %}">1</a>
       </span>
     {% endif %}
 
@@ -22,7 +23,7 @@
       {% if page_obj.number <= page|add:3 and page <= page_obj.number|add:3 %}
         {% if page != page_obj.number and page != paginator.num_pages %}
           <span class="page-pag">
-            <a class="link" href="?page={{ page }}">{{ page }}</a>
+            <a class="link" href="?{% query_transform request page=page %}">{{ page }}</a>
           </span>
         {% elif page == page_obj.number %}
           <span class="page-pag">
@@ -39,7 +40,7 @@
         </span>
       {% endif %}
       <span class="page-pag">
-        <a class="link" href="?page={{ paginator.num_pages }}">
+        <a class="link" href="?{% query_transform request page=paginator.num_pages %}">
           {{ paginator.num_pages }}
         </a>
       </span>
@@ -47,7 +48,7 @@
 
     {% if page_obj.has_next %}
       <span class="page-pag">
-        <a class="link" href="?page={{ page_obj.next_page_number }}">&gt</a>
+        <a class="link" href="?{% query_transform request page=page_obj.next_page_number %}">&gt</a>
       </span>
     {% endif %}
   </div>
