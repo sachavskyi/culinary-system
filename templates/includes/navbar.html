@@ -1,0 +1,46 @@
+{% load static %}
+{% block navbar %}
+  <a class="navbar-brand" href="{% url 'kitchen:index' %}"> <img src="{% static 'img/fork-knife.svg' %}" width="20" height="20" class="me-1" alt="icon"> Culinary System</a>
+
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav me-auto mb-2 mb-md-0">
+      <li class="nav-item {% if request.path == '/' %}active{% endif %}">
+        <a class="nav-link" href="{% url 'kitchen:index' %}">Home</a>
+      </li>
+      <li class="nav-item {% if '/dish_types/' in request.path %}active{% endif %}">
+        <a class="nav-link" href="{% url 'kitchen:dish-type-list' %}">Dish types</a>
+      </li>
+      <li class="nav-item {% if '/dishes/' in request.path %}active{% endif %}">
+        <a class="nav-link" href="{% url 'kitchen:dish-list' %}">Dishes</a>
+      </li>
+      <li class="nav-item {% if '/cooks/' in request.path %}active{% endif %}">
+        <a class="nav-link" href="{% url 'kitchen:cook-list' %}">Cooks</a>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav">
+      {% if request.user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link fw-bold" href="{% url 'kitchen:cook-detail' request.user.id %}">
+            👤 {{ request.user.username }}
+          </a>
+        </li>
+        <li class="nav-item">
+          <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button class="btn btn-warning btn-md ms-2">Log out</button>
+          </form>
+        </li>
+      {% else %}
+        <li class="nav-item">
+          <a class="btn btn-light btn-md ms-2" href="{% url 'login' %}">Login</a>
+        </li>
+      {% endif %}
+    </ul>
+  </div>
+
+{% endblock %}
