@@ -24,15 +24,15 @@ def index(request):
 
 class DishListView(LoginRequiredMixin, generic.ListView):
     model = Dish
-    queryset = Dish.objects.all()
     template_name = "kitchen/dish_list.html"
     paginate_by = 5
 
     def get_queryset(self):
+        queryset = Dish.objects.select_related("dish_type")
         search = self.request.GET.get("search")
         if search:
-            return self.queryset.filter(name__icontains=search)
-        return self.queryset
+            return queryset.filter(name__icontains=search)
+        return queryset
 
 
 class DishDetailView(LoginRequiredMixin, generic.DetailView):
