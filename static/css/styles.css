@@ -46,7 +46,7 @@
 .navbar .btn:hover {
     background-color: #FF9800;
     color: #F9F9F9;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.15); /* легка тінь */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
 
 .navbar-brand {
