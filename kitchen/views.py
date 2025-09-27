@@ -15,6 +15,9 @@ def index(request):
         "num_dishes": Dish.objects.count(),
         "num_dish_types": DishType.objects.count(),
         "num_cooks": Cook.objects.count(),
+        "latest_dishes": Dish.objects.select_related(
+            "dish_type"
+        ).order_by("-pk")[:5],
     }
     return render(request, "kitchen/index.html", context)
 
