@@ -37,6 +37,7 @@ class DishListView(LoginRequiredMixin, generic.ListView):
 
 class DishDetailView(LoginRequiredMixin, generic.DetailView):
     model = Dish
+    queryset = Dish.objects.prefetch_related("cooks")
     template_name = "kitchen/dish_detail.html"
 
     def post(self, request, *args, **kwargs):
