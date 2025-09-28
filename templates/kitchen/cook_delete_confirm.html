@@ -1,10 +1,14 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>Delete cook</h1>
-  <p>Are you sure you want to delete {{ cook.username }}?</p>
-  <form method="post">
-    {% csrf_token %}
-    <input type="submit" value="Yes, delete">
-  </form>
+  <div class="card shadow-sm p-4 text-center">
+    <h2 class="mb-3 text-danger">Delete Cook</h2>
+    <p>Are you sure you want to delete <strong>{{ cook.username }}</strong>?</p>
+
+    <form method="post" class="d-flex justify-content-center mt-4">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-danger me-2">Yes, delete</button>
+      <a href="{% url 'kitchen:cook-list' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+  </div>
 {% endblock %}
