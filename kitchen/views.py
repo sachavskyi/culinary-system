@@ -28,7 +28,7 @@ class DishListView(LoginRequiredMixin, generic.ListView):
     paginate_by = 5
 
     def get_queryset(self):
-        queryset = Dish.objects.select_related("dish_type")
+        queryset = Dish.objects.select_related("dish_type").order_by("-pk")
         search = self.request.GET.get("search")
         if search:
             return queryset.filter(name__icontains=search)
@@ -110,7 +110,7 @@ class CookListView(LoginRequiredMixin, generic.ListView):
     paginate_by = 5
 
     def get_queryset(self):
-        queryset = get_user_model().objects.all()
+        queryset = get_user_model().objects.all().order_by("pk")
         search = self.request.GET.get("search")
         if search:
             return queryset.filter(username__icontains=search)
