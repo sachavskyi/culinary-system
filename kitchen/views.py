@@ -71,16 +71,16 @@ class DishDeleteView(LoginRequiredMixin, generic.DeleteView):
 
 class DishTypeListView(LoginRequiredMixin, generic.ListView):
     model = DishType
-    queryset = DishType.objects.order_by("name")
     paginate_by = 5
     template_name = "kitchen/dish_type_list.html"
     context_object_name = "dish_type_list"
 
     def get_queryset(self):
+        queryset = DishType.objects.order_by("name")
         search = self.request.GET.get("search")
         if search:
-            return self.queryset.filter(name__icontains=search)
-        return self.queryset
+            return queryset.filter(name__icontains=search)
+        return queryset
 
 
 class DishTypeCreateView(LoginRequiredMixin, generic.CreateView):
@@ -106,15 +106,15 @@ class DishTypeDeleteView(LoginRequiredMixin, generic.DeleteView):
 
 class CookListView(LoginRequiredMixin, generic.ListView):
     model = Cook
-    queryset = get_user_model().objects.all()
     template_name = "kitchen/cook_list.html"
     paginate_by = 5
 
     def get_queryset(self):
+        queryset = get_user_model().objects.all()
         search = self.request.GET.get("search")
         if search:
-            return self.queryset.filter(username__icontains=search)
-        return self.queryset
+            return queryset.filter(username__icontains=search)
+        return queryset
 
 
 class CookDetailView(LoginRequiredMixin, generic.DetailView):
