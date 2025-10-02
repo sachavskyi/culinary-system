@@ -172,3 +172,25 @@ class CookDeleteViewTest(TestCase):
         self.assertEqual(res.status_code, 302)
         self.assertRedirects(res, "/cooks/")
         self.assertFalse(get_user_model().objects.filter(id=self.cook.id))
+
+
+class CookDetailViewTest(TestCase):
+    def setUp(self):
+        self.user = get_user_model().objects.create_user(
+            username="test",
+            password="test123",
+        )
+        self.client.force_login(self.user)
+        self.cook_detail_url = reverse("kitchen:cook-detail", args=[self.user.id])
+
+    def test_cook_detail_view_url_exists_at_desired_location(self):
+        res = self.client.get(f"/cooks/{self.user.id}/")
+        self.assertEqual(res.status_code, 200)
+
+    def test_cook_detail_view_url_accessible_by_name(self):
+        res = self.client.get(self.cook_detail_url)
+        self.assertEqual(res.status_code, 200)
+
+    def test_cook_detail_uses_correct_template_name(self):
+        res = self.client.get(self.cook_detail_url)
+        self.assertTemplateUsed(res, "kitchen/cook_detail.html")

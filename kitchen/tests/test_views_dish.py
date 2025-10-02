@@ -176,3 +176,31 @@ class DishDeleteViewTest(TestCase):
         self.assertEqual(res.status_code, 302)
         self.assertRedirects(res, "/dishes/")
         self.assertFalse(Dish.objects.filter(id=self.dish.id))
+
+
+class DishDetailViewTest(TestCase):
+    def setUp(self):
+        self.user = get_user_model().objects.create_user(
+            username="test",
+            password="test123",
+        )
+        self.client.force_login(self.user)
+        dish_type = DishType.objects.create(name="pizza")
+        self.dish = Dish.objects.create(
+            name="pepperoni",
+            price=10,
+            dish_type=dish_type,
+        )
+        self.dish_detail_url = reverse("kitchen:dish-detail", args=[self.dish.id])
+
+    def test_dish_detail_view_url_exists_at_desired_location(self):
+        res = self.client.get(f"/dishes/{self.user.id}/")
+        self.assertEqual(res.status_code, 200)
+
+    def test_dish_detail_view_url_accessible_by_name(self):
+        res = self.client.get(self.dish_detail_url)
+        self.assertEqual(res.status_code, 200)
+
+    def test_dish_detail_uses_correct_template_name(self):
+        res = self.client.get(self.dish_detail_url)
+        self.assertTemplateUsed(res, "kitchen/dish_detail.html")
