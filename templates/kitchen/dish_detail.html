@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="card shadow-sm mb-4">
+  <div class="card-body">
+    <h2 class="card-title fw-bold">{{ dish.name }}</h2>
+    <h5 class="text-success mb-3">Price: {{ dish.price }} $</h5>
+
+    {% if dish.description %}
+      <p class="card-text">{{ dish.description }}</p>
+    {% else %}
+      <p class="text-muted fst-italic">No description</p>
+    {% endif %}
+
+    <h5 class="mt-4">Cooks:</h5>
+    {% if dish.cooks.all %}
+      <ul class="list-group list-group-flush mb-3">
+        {% for cook in dish.cooks.all %}
+          <li class="list-group-item">
+            👨‍🍳 <strong>{{ cook.username }}</strong>
+            ({{ cook.first_name }} {{ cook.last_name }})
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="text-muted fst-italic">No cooks assigned</p>
+    {% endif %}
+
+    <form method="post" class="d-inline">
+      {% csrf_token %}
+      {% if user in dish.cooks.all %}
+        <button type="submit" name="action" value="delete" class="btn btn-outline-danger">
+          <i class="bi bi-x-circle"></i> Remove from My Dishes
+        </button>
+      {% else %}
+        <button type="submit" name="action" value="add" class="btn btn-outline-success">
+          <i class="bi bi-plus-circle"></i> Add to My Dishes
+        </button>
+      {% endif %}
+    </form>
+
+    <div class="mt-3">
+      <a href="{% url 'kitchen:dish-update' dish.id %}" class="btn btn-primary me-2">
+        <i class="bi bi-pencil"></i> Update
+      </a>
+      <a href="{% url 'kitchen:dish-delete' dish.id %}" class="btn btn-danger">
+        <i class="bi bi-trash"></i> Delete
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock %}

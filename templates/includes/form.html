@@ -1,0 +1,11 @@
+{% load crispy_forms_filters %}
+
+<div class="card shadow-sm p-4 mb-4">
+  <h1 class="mb-3">{{ object|yesno:"Update,Create" }} {{ model }}</h1>
+
+  <form method="post">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <button type="submit" class="btn btn-success mt-3">Submit</button>
+  </form>
+</div>
