@@ -9,6 +9,14 @@ A **Django-based web application** for managing **dishes, dish types, and cooks 
 
 ---
 
+## 👤 Demo User
+You can test the application using this demo account:
+
+- **Username:** `admin`
+- **Password:** `admin`
+
+---
+
 ## ✨ Features
 - CRUD operations for:
   - Dishes
