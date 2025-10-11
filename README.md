@@ -1,13 +1,15 @@
-# Culinary System
+# 🍴 Culinary System  
 
-A Django-based web application for managing dishes, cooks, and dish types.
+A **Django-based web application** for managing **dishes, dish types, and cooks (users)** with an intuitive and responsive interface.  
 
-## Check it out!
+---
 
-[Culinary System deployed to Render]()
+## 🚀 Live Demo  
+🔗 [Culinary System on Render](#)  
 
-## Features
+---
 
+## ✨ Features
 - CRUD operations for:
   - Dishes
   - Dish Types
@@ -17,20 +19,29 @@ A Django-based web application for managing dishes, cooks, and dish types.
 - Bootstrap 5 frontend for responsive UI
 - Pagination support
 
-## Installation
+---
 
-Python3 must be installed
+## 🧰 Tech Stack
+- **Backend:** 🐍 **Django** (Python)  
+- **Frontend:** 🎨 **Bootstrap 5**, HTML, CSS  
+- **Database:** 🗄️ **SQLite** (default) — easily switchable to PostgreSQL
+- **Deployment:** ☁️ **Render**
 
-```shell
+---
+
+## 🛠️ Installation
+Make sure **Python 3** is installed.  
+
+```bash
     git clone https://github.com/sachavskyi/culinary-system.git
     cd culinary-system
     python -m venv venv
-    venv\Scripts\activate
+    venv\Scripts\activate   # on Linux: source venv/bin/activate
     pip install -r requirements.txt
     python manage.py runserver
 ```
 
-## Demo
+## 🖼️ Demo
 ### Home page:
 ![Home page](demo1.png)
 
