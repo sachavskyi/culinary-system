@@ -8,4 +8,6 @@ exclude =
     **migrations
     venv
     tests
-    culinary_system/settings.py
+    culinary_system/settings/base.py
+    culinary_system/settings/development.py
+    culinary_system/settings/production.py
