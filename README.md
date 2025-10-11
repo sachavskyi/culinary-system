@@ -1,13 +1,11 @@
 # 🍴 Culinary System  
 
-A **Django-based web application** for managing **dishes, dish types, and cooks (users)** with an intuitive and responsive interface.  
+A **Django-based web application** for managing **dishes, dish types, and cooks (users)** with an intuitive and responsive interface.
 
----
 
 ## 🚀 Live Demo  
 🔗 [Culinary System on Render](#)  
 
----
 
 ## 👤 Demo User
 You can test the application using this demo account:
@@ -15,7 +13,6 @@ You can test the application using this demo account:
 - **Username:** `admin`
 - **Password:** `admin`
 
----
 
 ## ✨ Features
 - CRUD operations for:
@@ -27,7 +24,6 @@ You can test the application using this demo account:
 - Bootstrap 5 frontend for responsive UI
 - Pagination support
 
----
 
 ## 🧰 Tech Stack
 - **Backend:** 🐍 **Django** (Python)  
@@ -35,7 +31,6 @@ You can test the application using this demo account:
 - **Database:** 🗄️ **SQLite** (default) — easily switchable to PostgreSQL
 - **Deployment:** ☁️ **Render**
 
----
 
 ## 🛠️ Installation
 Make sure **Python 3** is installed.  
