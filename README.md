@@ -4,7 +4,7 @@ A **Django-based web application** for managing **dishes, dish types, and cooks 
 
 
 ## 🚀 Live Demo  
-🔗 [Culinary System on Render](#)  
+🔗 [Culinary System on Render](https://culinary-system.onrender.com)  
 
 
 ## 👤 Demo User
